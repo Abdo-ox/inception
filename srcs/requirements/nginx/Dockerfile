@@ -1,10 +1,9 @@
 FROM debian:latest
 
-ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && \
-    apt-get install nginx && \
-    apt-get install openssl
+RUN apt-get update -y && \
+    apt-get install nginx -y && \
+    apt-get install openssl -y
 
 COPY ./conf/nginx.conf /etc/nginx
 

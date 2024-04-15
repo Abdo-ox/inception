@@ -23,9 +23,12 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: ./requierments/mariadb
+    build: ./requirements/mariadb
     ports:
       - 3306:3306
+    env_file:
+    - .env
+
       
 networks:
   net:
