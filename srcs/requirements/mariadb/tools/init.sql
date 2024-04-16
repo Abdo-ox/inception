@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS wordpress;
+USE wordpress;
+CREATE USER 'ajari'@'%' IDENTIFIED BY 'ajari';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'ajari'@'%';
+FLUSH PRIVILEGES;
