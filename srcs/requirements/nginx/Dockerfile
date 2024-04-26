@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:oldstable
 
 
 RUN apt-get update -y && \

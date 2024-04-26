@@ -2,35 +2,54 @@ version: "3"
 
 services:
   nginx:
+    depends_on:
+      - wordpress
     container_name: nginx
     build: ./requirements/nginx
+    env_file:
+      - .env
     volumes:
-      - /var/www:/var/www/html
+      - /home/ajari/data/www:/var/www/html
     ports:
       - 443:443
     networks:
       - net
   
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress
-    volumes:
-      - /var/www:/var/www/html
-    ports:
-      - 9000:9000
-    networks:
-      - net
-
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
-    ports:
-      - 3306:3306
     env_file:
       - .env
     networks:
       - net
+    volumes:
+      - mariadb:/var/lib/mysql
 
-      
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    volumes:
+      - wordpress:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - net
+    depends_on:
+      - mariadb
+
+volumes:
+        wordpress:
+                driver: local
+                driver_opts:
+                          type: 'none'
+                          o: 'bind'
+                          device: '/home/ajari/inception/data/wp'
+        mariadb:
+                driver: local
+                driver_opts:
+                          type: 'none' 
+                          o: 'bind'
+                          device: '/home/ajari/inception/data/db'
+
 networks:
   net:
