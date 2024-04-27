@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /home/ajari/data/www:/var/www/html
+      - /home/ajari/inception/data/wp:/var/www/html
     ports:
       - 443:443
     networks:

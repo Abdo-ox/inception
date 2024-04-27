@@ -13,7 +13,8 @@ COPY conf/php-fpm-config.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 COPY tools/script.sh .
 
-RUN chmod 777 script.sh
+RUN chmod 777 script.sh && \
+    apt install sendmail -y 
     
 EXPOSE 9000
 
