@@ -11,10 +11,5 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     wp core install --allow-root --path="$WP_PATH" --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_user="$WP_ADMIN_USER" --admin_password="$WP_ADMIN_PASS" --admin_email="$WP_ADMIN_EMAIL"
     wp user create --allow-root --path="$WP_PATH" "$WP_USERNAME" abdoox2016@gmail.com --role=subscriber --user_pass="$WP_USERPASS"
 fi
-# while true; do
-#     if [ $? -eq 0 ]; then
-#         break
-#     fi
-#     sleep 1
-# done
+
 exec php-fpm7.4 -F

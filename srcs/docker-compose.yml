@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   nginx:
     depends_on:
@@ -9,7 +7,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /home/ajari/inception/data/wp:/var/www/html
+      - wordpress:/var/www/html
     ports:
       - 443:443
     networks:
@@ -38,18 +36,14 @@ services:
       - mariadb
 
 volumes:
-        wordpress:
-                driver: local
-                driver_opts:
-                          type: 'none'
-                          o: 'bind'
-                          device: '/home/ajari/inception/data/wp'
-        mariadb:
-                driver: local
-                driver_opts:
-                          type: 'none' 
-                          o: 'bind'
-                          device: '/home/ajari/inception/data/db'
+  wordpress:
+
+  mariadb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './requirements/mariadb/data'
 
 networks:
   net:
